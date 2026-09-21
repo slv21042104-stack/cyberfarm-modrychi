@@ -7,8 +7,8 @@ from config import settings
 from database import get_db, init_db
 from models import PaymentTransaction
 from schemas import InfrastructureResponse, PaymentRequest, PaymentResponse, SupportPackageResponse, UserResponse
-from services.game import get_infrastructure, get_or_create_user, get_support_packages
-from services.payments import get_payment_provider
+from game import get_infrastructure, get_or_create_user, get_support_packages
+from payments import get_payment_provider
 from telegram_auth import validate_telegram_init_data
 
 @asynccontextmanager
