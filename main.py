@@ -3,7 +3,7 @@ from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.ext.asyncio import AsyncSession
-from .config import settings
+from config import settings
 from .database import get_db, init_db
 from .models import PaymentTransaction
 from .schemas import InfrastructureResponse, PaymentRequest, PaymentResponse, SupportPackageResponse, UserResponse
