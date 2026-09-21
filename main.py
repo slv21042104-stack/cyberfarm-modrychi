@@ -64,4 +64,5 @@ async def create_payment(request: PaymentRequest, db: AsyncSession = Depends(get
     return PaymentResponse(transaction_id=tx.id, provider=provider_name, status=result.status,
                            checkout_url=result.checkout_url)
 
-app.mount("/", StaticFiles(directory="../../frontend", html=True), name="frontend")
+app.mount("/", StaticFiles(directory="."), name="frontend")
+
