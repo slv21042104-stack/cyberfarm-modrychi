@@ -4,7 +4,7 @@ import json
 import time
 from urllib.parse import parse_qsl
 from fastapi import HTTPException
-from .config import settings
+from config import settings
 
 def validate_telegram_init_data(init_data: str) -> dict:
     if not init_data:
