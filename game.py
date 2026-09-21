@@ -1,7 +1,7 @@
 from decimal import Decimal
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..models import InfrastructureModule, SupportPackage, User
+from models import InfrastructureModule, SupportPackage, User
 
 def normalize_language(language_code: str | None) -> str:
     code = (language_code or "en").lower()
