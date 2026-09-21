@@ -1,0 +1,26 @@
+cyberfarm-modrychi/
+├── backend/
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   ├── telegram_auth.py
+│   │   ├── main.py
+│   │   ├── seed.py
+│   │   └── services/
+│   │       ├── __init__.py
+│   │       ├── game.py
+│   │       └── payments.py
+│   └── requirements.txt
+├── frontend/
+│   ├── index.html
+│   ├── css/
+│   │   └── cyberfarm.css
+│   └── js/
+│       └── app.js
+├── .env.example
+├── Dockerfile
+├── docker-compose.yml
+└── README.md

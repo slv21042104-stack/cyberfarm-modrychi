@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: cyberfarm
+      POSTGRES_USER: cyberfarm
+      POSTGRES_PASSWORD: cyberfarm
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql+asyncpg://cyberfarm:cyberfarm@postgres:5432/cyberfarm
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      FRONTEND_URL: ${FRONTEND_URL}
+    ports:
+      - "8000:8000"
+volumes:
+  postgres_data:
