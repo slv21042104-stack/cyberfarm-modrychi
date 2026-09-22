@@ -64,5 +64,18 @@ async def create_payment(request: PaymentRequest, db: AsyncSession = Depends(get
     return PaymentResponse(transaction_id=tx.id, provider=provider_name, status=result.status,
                            checkout_url=result.checkout_url)
 
-# app.mount("/", StaticFiles(directory="."), name="frontend")
+from fastapi.responses import FileResponse
+import os
+
+@app.get("/")
+async def read_index():
+    return FileResponse(os.path.join(os.path.dirname(__file__), "index.html"))
+
+@app.get("/{file_path:path}")
+async def read_static(file_path: str):
+    full_path = os.path.join(os.path.dirname(__file__), file_path)
+    if os.path.exists(full_path) and os.path.isfile(full_path):
+        return FileResponse(full_path)
+    return FileResponse(os.path.join(os.path.dirname(__file__), "index.html"))
+
 
