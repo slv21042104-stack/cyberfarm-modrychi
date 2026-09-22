@@ -77,5 +77,10 @@ async def read_static(file_path: str):
     if os.path.exists(full_path) and os.path.isfile(full_path):
         return FileResponse(full_path)
     return FileResponse(os.path.join(os.path.dirname(__file__), "index.html"))
+from fastapi.responses import HTMLResponse
 
+@app.get("/", response_class=HTMLResponse)
+async def read_index():
+    with open("index.html", "r", encoding="utf-8") as f:
+        return f.read()
 
