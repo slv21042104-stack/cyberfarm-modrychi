@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -65,22 +66,27 @@ async def create_payment(request: PaymentRequest, db: AsyncSession = Depends(get
                            checkout_url=result.checkout_url)
 
 from fastapi.responses import FileResponse
-import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 
 @app.get("/")
 async def read_index():
-    return FileResponse(os.path.join(os.path.dirname(__file__), "index.html"))
+    return FileResponse(os.path.join(BASE_DIR, "index.html"))
 
-@app.get("/{file_path:path}")
-async def read_static(file_path: str):
-    full_path = os.path.join(os.path.dirname(__file__), file_path)
-    if os.path.exists(full_path) and os.path.isfile(full_path):
-        return FileResponse(full_path)
-    return FileResponse(os.path.join(os.path.dirname(__file__), "index.html"))
-from fastapi.responses import HTMLResponse
 
-@app.get("/", response_class=HTMLResponse)
-async def read_index():
-    with open("index.html", "r", encoding="utf-8") as f:
-        return f.read()
+@app.get("/cyberfarm.css")
+async def cyberfarm_css():
+    return FileResponse(
+        os.path.join(BASE_DIR, "cyberfarm.css"),
+        media_type="text/css"
+    )
+
+
+@app.get("/app.js")
+async def app_js():
+    return FileResponse(
+        os.path.join(BASE_DIR, "app.js"),
+        media_type="application/javascript"
+    )
 
