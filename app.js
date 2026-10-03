@@ -1,4 +1,28 @@
 const tg=window.Telegram?.WebApp;const state={user:null,infrastructure:[],packages:[]};
+document.body.insertAdjacentHTML("afterbegin", `
+<div id="cf-debug" style="
+position:fixed;
+z-index:999999;
+top:0;
+left:0;
+right:0;
+background:#111;
+color:#00ff9c;
+padding:20px;
+font-family:monospace;
+font-size:14px;
+line-height:1.7;
+">
+CYBERFARM DEBUG<br>
+JS LOADED<br>
+Telegram: ${window.Telegram ? "YES" : "NO"}<br>
+WebApp: ${window.Telegram?.WebApp ? "YES" : "NO"}<br>
+initData length: ${window.Telegram?.WebApp?.initData?.length || 0}<br>
+platform: ${window.Telegram?.WebApp?.platform || "NONE"}<br>
+version: ${window.Telegram?.WebApp?.version || "NONE"}<br>
+user: ${window.Telegram?.WebApp?.initDataUnsafe?.user ? "YES" : "NO"}
+</div>
+`);
 const I18N={en:{buy:"SUPPORT MISSION",completed:"COMPLETED",funding:"FUNDING",locked:"LOCKED"},uk:{buy:"ПІДТРИМАТИ МІСІЮ",completed:"ЗАВЕРШЕНО",funding:"ФІНАНСУВАННЯ",locked:"ЗАБЛОКОВАНО"},ja:{buy:"ミッションを支援",completed:"完了",funding:"資金調達中",locked:"ロック"}};
 function getLanguage(){const c=tg?.initDataUnsafe?.user?.language_code||navigator.language||"en";return c.startsWith("uk")?"uk":c.startsWith("ja")?"ja":"en"}const language=getLanguage();function t(k){return I18N[language]?.[k]||I18N.en[k]||k}
 function initData(){return tg?.initData||""}
