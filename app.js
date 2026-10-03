@@ -11,4 +11,90 @@ function renderPackages(){const c=document.getElementById("packagesList");c.inne
 async function purchase(id){const p=state.packages.find(x=>x.id===id);if(!p)return;const crypto=confirm("Use Crypto Pay simulation?\n\nOK = USDT\nCancel = Monobank / UAH");const currency=crypto?"USDT":"UAH",amount=crypto?p.price_usdt:p.price_uah;try{const r=await api("/api/payments/create",{method:"POST",body:JSON.stringify({amount,currency,purpose:"Drone Delivery Pack"})});if(tg?.showAlert)tg.showAlert(`Payment created: ${r.status}`);else alert(`Payment created: ${r.status}`)}catch(e){if(tg?.showAlert)tg.showAlert(e.message);else alert(e.message)}}
 function num(v){return Number(v).toLocaleString(undefined,{maximumFractionDigits:2})}function esc(v){return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function render(){document.getElementById("username").textContent=state.user.username?"@"+state.user.username:"USER "+state.user.telegram_id;document.getElementById("balance").textContent="$"+num(state.user.balance_crypto);document.getElementById("farmStatus").textContent=farmPct()+"%";renderZones();renderInfrastructure();renderPackages()}
-async function boot(){if(tg){tg.ready();tg.expand();tg.setHeaderColor?.("#05070b");tg.setBackgroundColor?.("#05070b")}try{state.user=await api("/api/auth",{method:"POST"});state.infrastructure=await api("/api/infrastructure");state.packages=await api("/api/support-packages");render()}catch(e){document.body.innerHTML+=`<div style="position:fixed;inset:0;display:grid;place-items:center;background:#05070b;color:#ff3158;font-family:monospace;padding:30px;text-align:center">TELEGRAM AUTHENTICATION ERROR<br><br>${esc(e.message)}</div>`}}boot();
+async function boot() {
+    const tg = window.Telegram?.WebApp;
+
+    if (tg) {
+        tg.ready();
+        tg.expand();
+        tg.setHeaderColor?.("#05070b");
+        tg.setBackgroundColor?.("#05070b");
+    }
+
+    // DIAGNOSTICS
+    const diagnostics = {
+        telegram: !!window.Telegram,
+        webApp: !!tg,
+        initDataLength: tg?.initData?.length || 0,
+        platform: tg?.platform || "NONE",
+        version: tg?.version || "NONE",
+        userFromUnsafe: !!tg?.initDataUnsafe?.user,
+        url: window.location.href
+    };
+
+    console.log("CYBERFARM TELEGRAM DIAGNOSTICS", diagnostics);
+
+    if (!tg || !tg.initData) {
+        document.body.innerHTML = `
+        <div style="
+            min-height:100vh;
+            box-sizing:border-box;
+            background:#05070b;
+            color:#00ff9c;
+            font-family:monospace;
+            padding:25px;
+            line-height:1.8;
+        ">
+            <h2 style="color:#ff3158">
+                CYBERFARM // TELEGRAM DIAGNOSTICS
+            </h2>
+
+            <div>Telegram SDK: <b>${!!window.Telegram ? "YES" : "NO"}</b></div>
+            <div>WebApp: <b>${!!tg ? "YES" : "NO"}</b></div>
+            <div>initData length: <b>${tg?.initData?.length || 0}</b></div>
+            <div>platform: <b>${tg?.platform || "NONE"}</b></div>
+            <div>version: <b>${tg?.version || "NONE"}</b></div>
+            <div>user in initDataUnsafe: <b>${tg?.initDataUnsafe?.user ? "YES" : "NO"}</b></div>
+
+            <hr style="border-color:#333">
+
+            <div style="color:#ff3158">
+                TELEGRAM INIT DATA IS EMPTY
+            </div>
+
+            <br>
+
+            <div style="color:#aaa">
+                We need to determine why Telegram did not provide
+                initialization data to the Mini App.
+            </div>
+        </div>`;
+        return;
+    }
+
+    try {
+        state.user = await api("/api/auth", {method: "POST"});
+        state.infrastructure = await api("/api/infrastructure");
+        state.packages = await api("/api/support-packages");
+        render();
+    } catch (e) {
+        document.body.innerHTML += `
+        <div style="
+            position:fixed;
+            inset:0;
+            display:grid;
+            place-items:center;
+            background:#05070b;
+            color:#ff3158;
+            font-family:monospace;
+            padding:30px;
+            text-align:center;
+        ">
+            TELEGRAM AUTHENTICATION ERROR
+            <br><br>
+            ${esc(e.message)}
+        </div>`;
+    }
+}
+
+boot();
