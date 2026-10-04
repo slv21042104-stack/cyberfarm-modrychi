@@ -70,7 +70,11 @@ async def create_payment(request: PaymentRequest, db: AsyncSession = Depends(get
 from fastapi.responses import FileResponse
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
+app.mount(
+    "/assets",
+    StaticFiles(directory=os.path.join(BASE_DIR, "assets")),
+    name="assets",
+)
 
 @app.get("/")
 async def read_index():
