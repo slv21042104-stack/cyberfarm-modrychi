@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy.ext.asyncio import AsyncSession
 from config import settings
 from database import get_db, init_db
+from seed import seed
 from models import PaymentTransaction
 from schemas import InfrastructureResponse, PaymentRequest, PaymentResponse, SupportPackageResponse, UserResponse
 from game import get_infrastructure, get_or_create_user, get_support_packages
@@ -15,6 +16,7 @@ from telegram_auth import validate_telegram_init_data
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await init_db()
+    await seed()
     yield
 
 app = FastAPI(title="CyberFarm: Modrychi API", version="0.1.0", lifespan=lifespan)
