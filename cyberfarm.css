@@ -66,7 +66,7 @@ body{
 
 
 /* =========================
-   INTRO / HERO
+   INTRO
 ========================= */
 
 .intro{
@@ -84,10 +84,18 @@ body{
   transform:scale(1.04)
 }
 
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
   position:absolute;
   inset:0;
-  background:url('/assets/cyber-shrimp-hero.png') center right/cover no-repeat;
+  background-image:url('/assets/cyber-shrimp-hero.webp');
+  background-position:center right;
+  background-size:cover;
+  background-repeat:no-repeat;
   z-index:0;
   pointer-events:none
 }
@@ -153,6 +161,11 @@ body{
   font-size:22px
 }
 
+
+/* =========================
+   INTRO CONTENT
+========================= */
+
 .copy{
   max-width:610px;
   margin-top:65px
@@ -216,16 +229,22 @@ body{
 }
 
 .actions button:first-child{
-  background:linear-gradient(
-    135deg,
-    #7ef2ff,
-    #24c8ff,
-    #28e3a2
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #7ef2ff,
+      #24c8ff,
+      #28e3a2
+    );
   color:#001018;
   border:0;
   box-shadow:0 12px 40px #00c8ff3d
 }
+
+
+/* =========================
+   LANGUAGES
+========================= */
 
 .langs{
   display:none;
@@ -341,7 +360,7 @@ body{
 
 
 /* =========================
-   GLASS PANELS
+   GLASS
 ========================= */
 
 .glass{
@@ -530,11 +549,12 @@ body{
   width:100px;
   height:100px;
   padding:12px;
-  background:linear-gradient(
-    145deg,
-    #173d4a,
-    #06131c
-  );
+  background:
+    linear-gradient(
+      145deg,
+      #173d4a,
+      #06131c
+    );
   border:1px solid #70dcf544;
   font-size:9px
 }
@@ -690,7 +710,7 @@ body{
 
 
 /* =========================
-   COLUMNS / MODULES
+   MODULES
 ========================= */
 
 .cols{
@@ -969,7 +989,7 @@ footer{
 
 
 /* =========================
-   TABLET / MOBILE
+   TABLET
 ========================= */
 
 @media(max-width:800px){
@@ -1011,8 +1031,7 @@ footer{
 
 
 /* =========================
-   PHONE PORTRAIT
-   HERO FIX
+   PORTRAIT PHONE
 ========================= */
 
 @media(max-width:520px){
@@ -1035,16 +1054,15 @@ footer{
   }
 
   /*
-    На вертикальном экране картинка
-    должна уходить вправо от текста.
-    Используем auto 100%, чтобы сохранить
-    высоту изображения и не делать
-    агрессивный crop через cover.
+    IMPORTANT:
+    На телефоне используется отдельная
+    вертикальная картинка.
   */
 
   .hero{
-    background-size:auto 100%;
-    background-position:25% center;
+    background-image:url('/assets/cyber-shrimp-hero-mobile.webp');
+    background-size:cover;
+    background-position:center center;
   }
 
   .veil{
@@ -1052,14 +1070,16 @@ footer{
       linear-gradient(
         90deg,
         #010910 0%,
-        #010910e6 32%,
-        #01091065 60%,
-        #01091008 100%
+        #010910ed 35%,
+        #010910a0 55%,
+        #01091030 78%,
+        transparent 100%
       ),
       linear-gradient(
         0deg,
-        #010910e8 0%,
-        transparent 60%
+        #010910f0 0%,
+        #01091040 52%,
+        transparent 78%
       )
   }
 
@@ -1091,7 +1111,7 @@ footer{
 
 
 /* =========================
-   VERY SMALL PHONES
+   VERY SMALL PHONE
 ========================= */
 
 @media(max-width:380px){
@@ -1123,4 +1143,4 @@ footer{
   .intro header small{
     font-size:7px
   }
-  }
+}
