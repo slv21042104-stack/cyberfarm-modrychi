@@ -1,17 +1,41 @@
-*{box-sizing:border-box}
-html,body{margin:0;background:#020912;color:#eafaff;font-family:Inter,system-ui,sans-serif}
-button{font:inherit;cursor:pointer}
-body{overflow-x:hidden}
+*{
+  box-sizing:border-box
+}
 
-.hidden{display:none!important}
+html,body{
+  margin:0;
+  background:#020912;
+  color:#eafaff;
+  font-family:Inter,system-ui,sans-serif
+}
+
+button{
+  font:inherit;
+  cursor:pointer
+}
+
+body{
+  overflow-x:hidden
+}
+
+.hidden{
+  display:none!important
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
 
 .bg{
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at 70% 20%,#06425d,#03121d 42%,#01050a);
+  background:
+    radial-gradient(circle at 70% 20%,#06425d,#03121d 42%,#01050a);
   z-index:-5;
   overflow:hidden
 }
+
 .bg i{
   position:absolute;
   width:55vw;
@@ -22,11 +46,13 @@ body{overflow-x:hidden}
   background:#00baff;
   animation:drift 12s infinite alternate
 }
+
 .bg i+i{
   right:-20%;
   bottom:-20%;
   background:#00d18b
 }
+
 .grid{
   position:absolute;
   inset:55% -10% -20%;
@@ -38,9 +64,10 @@ body{overflow-x:hidden}
   mask-image:linear-gradient(#000,transparent)
 }
 
+
 /* =========================
    INTRO / HERO
-   ========================= */
+========================= */
 
 .intro{
   min-height:100svh;
@@ -131,7 +158,9 @@ body{overflow-x:hidden}
   margin-top:65px
 }
 
-.copy label,.banner label,.section label{
+.copy label,
+.banner label,
+.section label{
   font-size:9px;
   letter-spacing:.18em;
   color:#62defd
@@ -187,7 +216,12 @@ body{overflow-x:hidden}
 }
 
 .actions button:first-child{
-  background:linear-gradient(135deg,#7ef2ff,#24c8ff,#28e3a2);
+  background:linear-gradient(
+    135deg,
+    #7ef2ff,
+    #24c8ff,
+    #28e3a2
+  );
   color:#001018;
   border:0;
   box-shadow:0 12px 40px #00c8ff3d
@@ -222,7 +256,8 @@ body{overflow-x:hidden}
   border-color:#39dfff
 }
 
-.langs b,.langs small{
+.langs b,
+.langs small{
   display:block
 }
 
@@ -242,9 +277,10 @@ body{overflow-x:hidden}
   margin-top:18px
 }
 
+
 /* =========================
-   FARM
-   ========================= */
+   FARM NAVIGATION
+========================= */
 
 .farm{
   min-height:100svh
@@ -303,13 +339,30 @@ body{overflow-x:hidden}
   margin:auto
 }
 
+
+/* =========================
+   GLASS PANELS
+========================= */
+
 .glass{
-  background:linear-gradient(145deg,#0b2430d9,#04131dd9);
+  background:
+    linear-gradient(
+      145deg,
+      #0b2430d9,
+      #04131dd9
+    );
   border:1px solid #71d8f520;
   border-radius:18px;
-  box-shadow:0 18px 55px #0007,inset 0 1px #fff1;
+  box-shadow:
+    0 18px 55px #0007,
+    inset 0 1px #fff1;
   backdrop-filter:blur(16px)
 }
+
+
+/* =========================
+   BANNER
+========================= */
 
 .banner{
   padding:20px;
@@ -318,7 +371,8 @@ body{overflow-x:hidden}
   gap:15px
 }
 
-.banner h2,.section h3{
+.banner h2,
+.section h3{
   margin:6px 0
 }
 
@@ -344,19 +398,26 @@ body{overflow-x:hidden}
   font-size:22px
 }
 
+
+/* =========================
+   PIPELINE
+========================= */
+
 .pipeline{
   margin-top:12px;
   padding:17px;
   overflow:hidden
 }
 
-.pipeline header,.glass>header{
+.pipeline header,
+.glass>header{
   display:flex;
   justify-content:space-between;
   align-items:center
 }
 
-.pipeline h3,.glass h3{
+.pipeline h3,
+.glass h3{
   font-size:14px;
   letter-spacing:.06em
 }
@@ -394,7 +455,8 @@ body{overflow-x:hidden}
   font-size:23px
 }
 
-.nodes b,.nodes small{
+.nodes b,
+.nodes small{
   display:block
 }
 
@@ -410,12 +472,22 @@ body{overflow-x:hidden}
   margin-top:2px
 }
 
+
+/* =========================
+   FARM SCENE
+========================= */
+
 .scene{
   height:450px;
   margin-top:12px;
   position:relative;
   overflow:hidden;
-  background:linear-gradient(#031a2a,#073247 55%,#03121c)
+  background:
+    linear-gradient(
+      #031a2a,
+      #073247 55%,
+      #03121c
+    )
 }
 
 .solar{
@@ -432,8 +504,16 @@ body{overflow-x:hidden}
   width:105px;
   height:55px;
   background:
-    repeating-linear-gradient(90deg,#0d3c5a 0 17px,#1882a9 18px 19px),
-    repeating-linear-gradient(0deg,transparent 0 17px,#5bdfff66 18px 19px);
+    repeating-linear-gradient(
+      90deg,
+      #0d3c5a 0 17px,
+      #1882a9 18px 19px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 17px,
+      #5bdfff66 18px 19px
+    );
   border:1px solid #48dcff;
   text-decoration:none
 }
@@ -450,7 +530,11 @@ body{overflow-x:hidden}
   width:100px;
   height:100px;
   padding:12px;
-  background:linear-gradient(145deg,#173d4a,#06131c);
+  background:linear-gradient(
+    145deg,
+    #173d4a,
+    #06131c
+  );
   border:1px solid #70dcf544;
   font-size:9px
 }
@@ -476,9 +560,16 @@ body{overflow-x:hidden}
   height:140px;
   border:5px solid #42656f;
   border-radius:50%;
-  background:radial-gradient(circle,#1bb8dcaa,#04202e);
+  background:
+    radial-gradient(
+      circle,
+      #1bb8dcaa,
+      #04202e
+    );
   transform:perspective(400px) rotateX(55deg);
-  box-shadow:0 18px 35px #0009,inset 0 0 30px #00dfff33;
+  box-shadow:
+    0 18px 35px #0009,
+    inset 0 0 30px #00dfff33;
   overflow:hidden
 }
 
@@ -487,7 +578,11 @@ body{overflow-x:hidden}
   position:absolute;
   inset:12%;
   border-radius:50%;
-  background-image:radial-gradient(#b9faff 1px,transparent 2px);
+  background-image:
+    radial-gradient(
+      #b9faff 1px,
+      transparent 2px
+    );
   background-size:27px 30px;
   animation:bub 2s linear infinite;
   opacity:.5
@@ -541,7 +636,9 @@ body{overflow-x:hidden}
   border-radius:0 10px 10px 0
 }
 
-.scene-title label,.scene-title b,.scene-title small{
+.scene-title label,
+.scene-title b,
+.scene-title small{
   display:block
 }
 
@@ -591,6 +688,11 @@ body{overflow-x:hidden}
   bottom:20px
 }
 
+
+/* =========================
+   COLUMNS / MODULES
+========================= */
+
 .cols{
   display:grid;
   grid-template-columns:1.1fr .9fr;
@@ -598,7 +700,9 @@ body{overflow-x:hidden}
   margin-top:12px
 }
 
-.cols>.glass,.zero,.supportbox{
+.cols>.glass,
+.zero,
+.supportbox{
   padding:17px
 }
 
@@ -649,13 +753,23 @@ body{overflow-x:hidden}
 .module i em{
   display:block;
   height:100%;
-  background:linear-gradient(90deg,#22c8ff,#2ce4a0)
+  background:
+    linear-gradient(
+      90deg,
+      #22c8ff,
+      #2ce4a0
+    )
 }
 
 .module label{
   font-size:7px;
   color:#9ab0b7
 }
+
+
+/* =========================
+   WATER LAB
+========================= */
 
 .water{
   display:grid;
@@ -672,7 +786,8 @@ body{overflow-x:hidden}
   padding:8px
 }
 
-.water span,.water small{
+.water span,
+.water small{
   font-size:7px;
   color:#668f9d
 }
@@ -698,7 +813,13 @@ body{overflow-x:hidden}
   font-style:normal
 }
 
-.zero,.supportbox{
+
+/* =========================
+   ZERO WASTE
+========================= */
+
+.zero,
+.supportbox{
   margin-top:12px
 }
 
@@ -739,6 +860,11 @@ body{overflow-x:hidden}
   line-height:1.5;
   margin-top:12px
 }
+
+
+/* =========================
+   SUPPORT
+========================= */
 
 .supportbox>header>b{
   font-size:8px;
@@ -804,6 +930,11 @@ body{overflow-x:hidden}
   height:27px
 }
 
+
+/* =========================
+   FOOTER
+========================= */
+
 footer{
   display:flex;
   justify-content:space-between;
@@ -813,9 +944,10 @@ footer{
   letter-spacing:.08em
 }
 
+
 /* =========================
    ANIMATIONS
-   ========================= */
+========================= */
 
 @keyframes drift{
   to{
@@ -823,4 +955,172 @@ footer{
   }
 }
 
-@
+@keyframes swim{
+  50%{
+    transform:translate(17px,-8px) rotate(8deg)
+  }
+}
+
+@keyframes bub{
+  to{
+    background-position:0 -60px
+  }
+}
+
+
+/* =========================
+   TABLET / MOBILE
+========================= */
+
+@media(max-width:800px){
+
+  .banner{
+    flex-direction:column
+  }
+
+  .stats{
+    justify-content:space-between
+  }
+
+  .cols{
+    grid-template-columns:1fr
+  }
+
+  .scene{
+    height:420px
+  }
+
+  .plant{
+    transform:scale(.75);
+    transform-origin:top right
+  }
+
+  .solar{
+    right:-5%
+  }
+
+  .solar u{
+    width:75px;
+    height:40px
+  }
+
+  .water{
+    grid-template-columns:repeat(2,1fr)
+  }
+}
+
+
+/* =========================
+   PHONE PORTRAIT
+   HERO FIX
+========================= */
+
+@media(max-width:520px){
+
+  .copy h1{
+    font-size:62px
+  }
+
+  .copy p{
+    font-size:13px
+  }
+
+  .flow{
+    font-size:7px;
+    gap:5px
+  }
+
+  .introin{
+    padding:20px 17px
+  }
+
+  /*
+    На вертикальном экране картинка
+    должна уходить вправо от текста.
+    Используем auto 100%, чтобы сохранить
+    высоту изображения и не делать
+    агрессивный crop через cover.
+  */
+
+  .hero{
+    background-size:auto 100%;
+    background-position:25% center;
+  }
+
+  .veil{
+    background:
+      linear-gradient(
+        90deg,
+        #010910 0%,
+        #010910e6 32%,
+        #01091065 60%,
+        #01091008 100%
+      ),
+      linear-gradient(
+        0deg,
+        #010910e8 0%,
+        transparent 60%
+      )
+  }
+
+  .scene-title{
+    max-width:260px
+  }
+
+  .pool{
+    width:47%;
+    height:125px
+  }
+
+  .scene{
+    height:400px
+  }
+
+  .waste{
+    gap:5px
+  }
+
+  .waste span{
+    min-width:75px
+  }
+
+  .farm main{
+    padding:9px
+  }
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media(max-width:380px){
+
+  .copy h1{
+    font-size:54px
+  }
+
+  .copy p{
+    font-size:12px
+  }
+
+  .flow{
+    font-size:6px
+  }
+
+  .actions button{
+    padding:12px 15px
+  }
+
+  .langs{
+    width:100%
+  }
+
+  .intro header strong{
+    font-size:12px
+  }
+
+  .intro header small{
+    font-size:7px
+  }
+}
