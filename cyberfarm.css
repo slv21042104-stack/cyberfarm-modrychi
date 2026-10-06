@@ -19,3 +19,40 @@
 .feed-btn{position:absolute;left:8%;bottom:5px;z-index:8;border:1px solid #54e7ff66;background:#062b39e8;color:#9cf5ff;border-radius:6px;padding:5px 8px;font:700 7px monospace;transform:rotateX(-55deg);cursor:pointer}
 .cycle-panel{position:absolute;left:20px;right:20px;bottom:17px;z-index:8;background:#02131fd9;border:1px solid #61ddff20;border-radius:10px;padding:8px 10px}.cycle-panel>div:first-child{display:flex;justify-content:space-between;align-items:center}.cycle-panel small{font-size:6px;color:#628e9d}.cycle-panel b{font-size:8px;color:#d6fbff}.cycle-bar{height:5px;background:#102934;border-radius:5px;margin:6px 0;overflow:hidden}.cycle-bar i{display:block;width:31.3%;height:100%;background:linear-gradient(90deg,#19bddd,#78f2ff);border-radius:5px}.cycle-metrics{display:flex;justify-content:space-between;font-size:6px;color:#628e9d}.cycle-metrics b{color:#a7f4ff;font-size:7px}
 @media(max-width:700px){.game-scene{min-height:640px;padding-bottom:145px}.game-hud{top:102px;grid-template-columns:repeat(2,1fr)}.game-hud div:last-child{display:none}.game-pools{bottom:78px;gap:8px}.game-pool{height:155px;width:47%}.pool-stats{font-size:5px}.pool-head{font-size:6px}.cycle-panel{bottom:15px}.cycle-metrics{font-size:5px}.cycle-metrics b{font-size:6px}}
+
+/* STAGE 2A HOTFIX — separate game HUD from infrastructure/status blocks */
+.game-scene{height:660px;min-height:660px;padding-bottom:165px}
+.game-scene .scene-title{top:16px;left:20px;z-index:12;max-width:42%}
+.game-scene .hud{z-index:13}
+.game-scene .h1{right:20px;top:16px}
+.game-scene .h2{right:20px;top:68px}
+.game-scene .h3{left:20px;bottom:112px}
+.game-scene .solar{top:24px;right:205px;z-index:2;transform:perspective(400px) rotateX(55deg) scale(.82);transform-origin:top right}
+.game-scene .plant{right:20px;top:185px;z-index:3;transform:scale(.78);transform-origin:top right}
+.game-scene .game-hud{top:108px;z-index:10}
+.game-scene .game-pools{bottom:105px;z-index:6}
+.game-scene .cycle-panel{bottom:17px;z-index:14}
+@media(max-width:800px){
+  .game-scene{height:720px;min-height:720px;padding-bottom:165px}
+  .game-scene .scene-title{top:14px;left:12px;max-width:55%;padding:8px 10px}
+  .game-scene .scene-title b{font-size:11px}
+  .game-scene .scene-title small{font-size:7px}
+  .game-scene .h1{right:12px;top:14px}
+  .game-scene .h2{right:12px;top:63px}
+  .game-scene .solar{top:18px;right:150px;transform:perspective(400px) rotateX(55deg) scale(.58);transform-origin:top right}
+  .game-scene .plant{right:10px;top:205px;transform:scale(.58);transform-origin:top right}
+  .game-scene .game-hud{left:12px;right:12px;top:108px}
+  .game-scene .game-pools{left:3%;right:3%;bottom:105px}
+  .game-scene .h3{left:12px;bottom:112px}
+  .game-scene .cycle-panel{left:12px;right:12px;bottom:12px}
+}
+@media(max-width:420px){
+  .game-scene{height:760px;min-height:760px}
+  .game-scene .game-hud{top:108px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .game-scene .game-pools{bottom:105px;gap:7px}
+  .game-scene .game-pool{height:160px;width:48%}
+  .game-scene .plant{top:235px;right:4px}
+  .game-scene .solar{right:132px}
+  .game-scene .h1,.game-scene .h2{transform:scale(.88);transform-origin:top right}
+  .game-scene .h3{bottom:112px}
+}
