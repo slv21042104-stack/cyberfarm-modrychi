@@ -26,4 +26,69 @@ function toast(m){const x=document.getElementById("toast");x.textContent=m;x.cla
 function setup(){if(tg){tg.ready();tg.expand();tg.setHeaderColor?.("#03111c");tg.setBackgroundColor?.("#03111c")}S.lang=detect();renderWater();apply();clock();setInterval(clock,1000);document.getElementById("lang").onclick=e=>{e.stopPropagation();closePanels();document.getElementById("langsIntro").classList.add("open")};document.getElementById("flang").onclick=e=>{e.stopPropagation();closePanels();document.getElementById("langsFarm").classList.add("open")};document.addEventListener("click",e=>{if(!e.target.closest(".langs")&&!e.target.closest(".lang-button"))closePanels()});document.getElementById("start").onclick=()=>{document.getElementById("intro").classList.add("out");setTimeout(()=>{document.getElementById("intro").classList.add("hidden");document.getElementById("farm").classList.remove("hidden")},600)};document.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>contribution(+b.dataset.a,b))}
 async function boot(){setup();try{S.user=await api("/api/auth",{method:"POST"});S.infrastructure=await api("/api/infrastructure");S.packages=await api("/api/support-packages");document.getElementById("user").textContent=S.user.username?"@"+S.user.username:`${t("user")} ${S.user.telegram_id}`;document.getElementById("balance").textContent="$"+num(S.user.balance_crypto);document.getElementById("farmStatus").textContent=farmPct()+"%";apply()}catch(e){toast(e.message)}}boot();
 
-;(()=>{let xp=0,feed1=18.6,feed2=18.6;const $=id=>document.getElementById(id);function sync(){if($('xp'))$('xp').textContent=xp+' / 1000';if($('farmLevel'))$('farmLevel').textContent=String(1+Math.floor(xp/1000));if($('biomassValue'))$('biomassValue').textContent=(feed1+feed2).toFixed(1)+' kg';if($('pool1Bio'))$('pool1Bio').textContent=feed1.toFixed(1)+' kg';if($('pool2Bio'))$('pool2Bio').textContent=feed2.toFixed(1)+' kg'}document.addEventListener('click',e=>{const b=e.target.closest('.feed-btn');if(!b)return;const n=b.dataset.feed;if(n==='1')feed1+=.4;else feed2+=.4;xp+=25;sync();b.textContent='✓ FED +25 XP';setTimeout(()=>b.textContent='+ FEED',900)});document.addEventListener('DOMContentLoaded',()=>{sync();const p=$('cycleProgress');if(p)p.style.width=(47/150*100)+'%'});})();
+;(()=>{
+const $=id=>document.getElementById(id);
+const G={
+ en:{population:'POPULATION',biomass:'BIOMASS',health:'HEALTH',feed:'FEED',inspect:'INSPECT',events:'LIVE FARM EVENTS',growth:'GROWTH CYCLE',day:'DAY',avg:'AVG WT',survival:'SURVIVAL',close:'CLOSE',pool:'POOL',temperature:'TEMPERATURE',ph:'pH',do:'DO',fed:'FEEDING COMPLETED',waterStable:'WATER QUALITY — STABLE',growthEvent:'BIOMASS +',cycleEvent:'GROWTH CYCLE ADVANCED',cooldown:'FEED COOLDOWN',ready:'READY'},
+ uk:{population:'ПОПУЛЯЦІЯ',biomass:'БІОМАСА',health:'ЗДОРОВʼЯ',feed:'ГОДУВАТИ',inspect:'ОГЛЯД',events:'ПОДІЇ ФЕРМИ ВЖИВУ',growth:'ЦИКЛ РОСТУ',day:'ДЕНЬ',avg:'СЕР. ВАГА',survival:'ВИЖИВАНІСТЬ',close:'ЗАКРИТИ',pool:'БАСЕЙН',temperature:'ТЕМПЕРАТУРА',ph:'pH',do:'DO',fed:'ГОДІВЛЯ ЗАВЕРШЕНА',waterStable:'ЯКІСТЬ ВОДИ — СТАБІЛЬНА',growthEvent:'БІОМАСА +',cycleEvent:'ЦИКЛ РОСТУ ПРОСУНУТО',cooldown:'ПЕРЕРВА ГОДІВЛІ',ready:'ГОТОВО'},
+ de:{population:'POPULATION',biomass:'BIOMASSE',health:'GESUNDHEIT',feed:'FÜTTERN',inspect:'INSPEKT',events:'LIVE-FARM-EREIGNISSE',growth:'WACHSTUMSZYKLUS',day:'TAG',avg:'AVG. GEWICHT',survival:'ÜBERLEBEN',close:'SCHLIESSEN',pool:'BECKEN',temperature:'TEMPERATUR',ph:'pH',do:'DO',fed:'FÜTTERUNG ABGESCHLOSSEN',waterStable:'WASSERQUALITÄT — STABIL',growthEvent:'BIOMASSE +',cycleEvent:'WACHSTUMSZYKLUS FORTGESCHRITTEN',cooldown:'FÜTTERPAUSE',ready:'BEREIT'},
+ fr:{population:'POPULATION',biomass:'BIOMASSE',health:'SANTÉ',feed:'NOURRIR',inspect:'INSPECTER',events:'ÉVÉNEMENTS DE LA FERME',growth:'CYCLE DE CROISSANCE',day:'JOUR',avg:'POIDS MOY.',survival:'SURVIE',close:'FERMER',pool:'BASSIN',temperature:'TEMPÉRATURE',ph:'pH',do:'DO',fed:'ALIMENTATION TERMINÉE',waterStable:'QUALITÉ DE L’EAU — STABLE',growthEvent:'BIOMASSE +',cycleEvent:'CYCLE DE CROISSANCE AVANCÉ',cooldown:'PAUSE ALIMENTATION',ready:'PRÊT'},
+ ja:{population:'個体数',biomass:'バイオマス',health:'健康度',feed:'給餌',inspect:'検査',events:'ライブ農場イベント',growth:'成長サイクル',day:'日',avg:'平均体重',survival:'生存率',close:'閉じる',pool:'養殖池',temperature:'水温',ph:'pH',do:'DO',fed:'給餌完了',waterStable:'水質 — 安定',growthEvent:'バイオマス +',cycleEvent:'成長サイクル進行',cooldown:'給餌クールダウン',ready:'準備完了'},
+ zh:{population:'数量',biomass:'生物量',health:'健康度',feed:'喂料',inspect:'检查',events:'农场实时事件',growth:'生长周期',day:'天',avg:'平均重量',survival:'存活率',close:'关闭',pool:'养殖池',temperature:'水温',ph:'pH',do:'DO',fed:'喂料完成',waterStable:'水质 — 稳定',growthEvent:'生物量 +',cycleEvent:'生长周期推进',cooldown:'喂料冷却',ready:'就绪'}
+};
+const gt=k=>(G[S.lang]||G.en)[k]||G.en[k]||k;
+const pools={
+ 1:{pop:1240,bio:18.6,health:96,feed:82,survival:95,avg:31,temp:28.0,ph:7.5,do:6.2},
+ 2:{pop:1180,bio:18.6,health:94,feed:78,survival:94,avg:30,temp:28.0,ph:7.5,do:6.2}
+};
+let xp=0,day=47,lastFeed={1:0,2:0};
+function sync(){
+ const total=pools[1].bio+pools[2].bio;
+ if($('xp'))$('xp').textContent=xp+' / 1000';
+ if($('farmLevel'))$('farmLevel').textContent=String(1+Math.floor(xp/1000));
+ if($('biomassValue'))$('biomassValue').textContent=total.toFixed(1)+' kg';
+ for(const n of [1,2]){
+  const p=pools[n];
+  const bio=$('pool'+n+'Bio'); if(bio)bio.textContent=p.bio.toFixed(1)+' kg';
+  const card=document.querySelector(`.game-pool[data-pool="${n}"]`); if(!card)continue;
+  const stats=card.querySelector('.pool-stats');
+  if(stats)stats.innerHTML=`<span>${gt('population')} <b>${p.pop.toLocaleString()}</b></span><span>${gt('biomass')} <b>${p.bio.toFixed(1)} kg</b></span><span>${gt('health')} <b>${p.health}%</b></span>`;
+  const btn=card.querySelector('.feed-btn'); if(btn&&!btn.disabled)btn.textContent=gt('feed');
+ }
+ if($('cycleDay'))$('cycleDay').textContent=day;
+ if($('cycleProgress'))$('cycleProgress').style.width=(day/150*100)+'%';
+ const metrics=document.querySelector('.cycle-metrics');
+ if(metrics)metrics.innerHTML=`<span>${gt('avg')} <b>${Math.round((pools[1].avg+pools[2].avg)/2)} g</b></span><span>${gt('survival')} <b>${Math.round((pools[1].survival+pools[2].survival)/2)}%</b></span><span>${gt('health')} <b>${Math.round((pools[1].health+pools[2].health)/2)}%</b></span>`;
+}
+function ensureEvents(){
+ let panel=$('farmEvents');
+ if(panel)return panel;
+ const scene=document.querySelector('.game-scene'); if(!scene)return null;
+ panel=document.createElement('div');panel.id='farmEvents';panel.className='farm-events';
+ panel.innerHTML=`<div class="events-head"><b>${gt('events')}</b><span>● LIVE</span></div><div id="eventList"></div>`;
+ scene.appendChild(panel);
+ addEvent(gt('waterStable'),'SYSTEM',false);
+ return panel;
+}
+function addEvent(message,tag='FARM',positive=true){
+ const panel=ensureEvents();if(!panel)return;const list=$('eventList');if(!list)return;
+ const row=document.createElement('div');row.className='farm-event';row.innerHTML=`<time>${new Date().toLocaleTimeString([],{hour12:false,hour:'2-digit',minute:'2-digit'})}</time><b>${tag}</b><span>${message}</span>`;list.prepend(row);
+ while(list.children.length>4)list.lastElementChild.remove();
+}
+function feed(n){
+ const now=Date.now(),cool=3500;
+ if(now-lastFeed[n]<cool){toast(gt('cooldown'));return}
+ lastFeed[n]=now;const p=pools[n];p.bio+=0.4;p.feed=Math.min(100,p.feed+7);p.health=Math.min(100,p.health+0.2);xp+=25;sync();
+ const b=document.querySelector(`.feed-btn[data-feed="${n}"]`);if(b){b.disabled=true;b.textContent='✓ +25 XP';setTimeout(()=>{b.disabled=false;b.textContent=gt('feed')},1200);setTimeout(()=>sync(),1210)}
+ addEvent(`${gt('fed')} • +0.4 kg • +25 XP`,'POOL #0'+n);
+}
+function inspect(n){
+ const p=pools[n];let modal=$('poolInspect');
+ if(!modal){modal=document.createElement('div');modal.id='poolInspect';modal.className='pool-modal';document.body.appendChild(modal)}
+ modal.innerHTML=`<div class="pool-modal-card"><div class="pool-modal-head"><div><small>${gt('pool')}</small><h3>#0${n}</h3></div><button class="modal-close">×</button></div><div class="inspect-grid"><div><small>${gt('population')}</small><b>${p.pop.toLocaleString()}</b></div><div><small>${gt('biomass')}</small><b>${p.bio.toFixed(1)} kg</b></div><div><small>${gt('health')}</small><b>${p.health.toFixed(1)}%</b></div><div><small>FEED</small><b>${p.feed}%</b></div><div><small>${gt('temperature')}</small><b>${p.temp.toFixed(1)}°C</b></div><div><small>${gt('ph')}</small><b>${p.ph.toFixed(1)}</b></div><div><small>${gt('do')}</small><b>${p.do.toFixed(1)} mg/L</b></div><div><small>${gt('avg')}</small><b>${p.avg} g</b></div></div><button class="modal-action modal-feed" data-feed="${n}">${gt('feed')}</button></div>`;
+ modal.classList.add('open');modal.querySelector('.modal-close').onclick=()=>modal.classList.remove('open');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};modal.querySelector('.modal-feed').onclick=()=>{feed(n);inspect(n)};
+}
+document.addEventListener('click',e=>{const f=e.target.closest('.feed-btn');if(f){e.stopPropagation();feed(+f.dataset.feed);return}const i=e.target.closest('.inspect-btn');if(i){inspect(+i.dataset.inspect);return}const pool=e.target.closest('.game-pool');if(pool&&!e.target.closest('button'))inspect(+pool.dataset.pool)});
+function gameStart(){ensureEvents();sync();setInterval(()=>{for(const n of [1,2]){const p=pools[n];p.bio+=0.03;p.feed=Math.max(0,p.feed-0.5);p.health=Math.max(80,Math.min(100,p.health+(p.feed>40?.03:-.08)));p.avg+=.02}if(day<150){day++;}sync();if(day%5===0)addEvent(`${gt('growthEvent')} 0.06 kg`,'GROWTH');},15000)}
+document.addEventListener('DOMContentLoaded',gameStart);
+})();

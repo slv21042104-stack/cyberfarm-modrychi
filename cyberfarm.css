@@ -56,3 +56,22 @@
   .game-scene .h1,.game-scene .h2{transform:scale(.88);transform-origin:top right}
   .game-scene .h3{bottom:112px}
 }
+
+/* STAGE 2B — INTERACTIVE POOLS */
+.game-pool{cursor:pointer}
+.game-pool .shrimp-layer span{filter:drop-shadow(0 0 5px #54e7ff88);will-change:transform}
+.game-pool .shrimp-layer span:nth-child(1){left:12%;top:38%;animation:shrimpSwimA 4.5s ease-in-out infinite}
+.game-pool .shrimp-layer span:nth-child(2){left:42%;top:58%;animation:shrimpSwimB 5.2s ease-in-out infinite 1s}
+.game-pool .shrimp-layer span:nth-child(3){left:67%;top:28%;animation:shrimpSwimC 4.1s ease-in-out infinite .5s}
+.game-pool .shrimp-layer span:nth-child(4){left:30%;top:18%;animation:shrimpSwimA 5.7s ease-in-out infinite 1.5s}
+@keyframes shrimpSwimA{0%,100%{transform:translate(0,0) rotate(-8deg)}50%{transform:translate(28px,10px) rotate(10deg)}}
+@keyframes shrimpSwimB{0%,100%{transform:translate(0,0) rotate(12deg)}50%{transform:translate(-22px,-12px) rotate(-12deg)}}
+@keyframes shrimpSwimC{0%,100%{transform:translate(0,0) rotate(-15deg)}50%{transform:translate(18px,18px) rotate(8deg)}}
+.inspect-btn{position:absolute;right:8%;bottom:5px;z-index:8;border:1px solid #61ddff55;background:#071b28e8;color:#bcefff;border-radius:6px;padding:5px 7px;font:700 7px monospace;transform:rotateX(-55deg);cursor:pointer}
+.feed-btn:disabled{opacity:.55;cursor:wait}
+.farm-events{position:absolute;left:20px;right:20px;bottom:170px;z-index:15;background:#02131fe8;border:1px solid #61ddff24;border-radius:9px;padding:7px 9px;box-shadow:0 5px 18px #0006;pointer-events:none}
+.events-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;font-size:7px;color:#8df2ff}.events-head span{font-size:6px;color:#43e89e}
+.farm-event{display:grid;grid-template-columns:34px 48px 1fr;gap:5px;align-items:center;padding:3px 0;border-top:1px solid #61ddff12;font:6px monospace;color:#9bbbc4}.farm-event time{color:#4d8291}.farm-event b{color:#65dfff}.farm-event span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pool-modal{position:fixed;inset:0;z-index:1000;background:#0009;display:none;align-items:center;justify-content:center;padding:18px}.pool-modal.open{display:flex}.pool-modal-card{width:min(390px,100%);background:linear-gradient(160deg,#071d2a,#020b12);border:1px solid #63ddff55;border-radius:14px;box-shadow:0 20px 70px #000b;padding:16px;color:#d9faff}.pool-modal-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #61ddff22;padding-bottom:10px}.pool-modal-head small{font-size:7px;color:#6594a1}.pool-modal-head h3{margin:2px 0 0;color:#8df2ff;font-size:20px}.modal-close{border:0;background:#ffffff0d;color:#bcefff;border-radius:7px;font-size:22px;width:34px;height:34px;cursor:pointer}.inspect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:12px 0}.inspect-grid div{background:#ffffff06;border:1px solid #61ddff18;border-radius:8px;padding:9px}.inspect-grid small,.inspect-grid b{display:block}.inspect-grid small{font-size:6px;color:#638e9b}.inspect-grid b{font-size:12px;color:#bdf7ff;margin-top:3px}.modal-action{width:100%;border:1px solid #54e7ff66;background:#063344;color:#9cf5ff;border-radius:8px;padding:10px;font:700 10px monospace;cursor:pointer}
+@media(max-width:800px){.farm-events{left:12px;right:12px;bottom:170px}.farm-event{grid-template-columns:31px 42px 1fr;font-size:5.5px}.inspect-btn,.feed-btn{font-size:6px;padding:4px 5px}}
+@media(max-width:420px){.farm-events{bottom:170px}.pool-modal{padding:10px}.pool-modal-card{padding:12px}}
