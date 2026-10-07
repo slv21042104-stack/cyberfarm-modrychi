@@ -57,58 +57,42 @@
   .game-scene .h3{bottom:112px}
 }
 
-/* STAGE 2B — INTERACTIVE POOLS */
-.game-pool{cursor:pointer}
-.game-pool .shrimp-layer span{filter:drop-shadow(0 0 5px #54e7ff88);will-change:transform}
-.game-pool .shrimp-layer span:nth-child(1){left:12%;top:38%;animation:shrimpSwimA 4.5s ease-in-out infinite}
-.game-pool .shrimp-layer span:nth-child(2){left:42%;top:58%;animation:shrimpSwimB 5.2s ease-in-out infinite 1s}
-.game-pool .shrimp-layer span:nth-child(3){left:67%;top:28%;animation:shrimpSwimC 4.1s ease-in-out infinite .5s}
-.game-pool .shrimp-layer span:nth-child(4){left:30%;top:18%;animation:shrimpSwimA 5.7s ease-in-out infinite 1.5s}
+/* STAGE 2B CLEAN LAYOUT — single authoritative game scene layout */
+.game-scene{height:860px!important;min-height:860px!important;padding-bottom:0!important;overflow:hidden}
+.game-scene .scene-title{top:16px;left:20px;z-index:20;max-width:43%}
+.game-scene .h1{right:20px;top:16px;z-index:20}
+.game-scene .h2{right:20px;top:68px;z-index:20}
+.game-scene .h3{left:20px;top:675px;bottom:auto;z-index:20}
+.game-scene .solar{top:235px;right:215px;z-index:2;transform:perspective(400px) rotateX(55deg) scale(.78);transform-origin:top right}
+.game-scene .plant{right:18px;top:225px;z-index:3;transform:scale(.72);transform-origin:top right}
+.game-scene .game-hud{position:absolute;left:20px;right:20px;top:108px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;z-index:18}
+.game-scene .game-hud div{background:#02131fe8;border:1px solid #61ddff24;border-radius:9px;padding:7px 8px;box-shadow:0 5px 16px #0005}
+.game-scene .game-hud small,.game-scene .game-hud b{display:block}.game-scene .game-hud small{font-size:6px;color:#628e9d}.game-scene .game-hud b{font-size:10px;color:#8df2ff;margin-top:3px}
+.game-scene .game-pools{position:absolute;top:385px;bottom:auto;left:4%;right:4%;display:flex;justify-content:center;gap:12px;align-items:stretch;z-index:8}
+.game-scene .game-pool{position:relative;width:46%;height:160px;cursor:pointer;overflow:hidden;transform:perspective(500px) rotateX(55deg);transition:filter .2s,transform .2s}
+.game-scene .game-pool:hover{filter:brightness(1.12);transform:perspective(500px) rotateX(55deg) translateY(-3px)}
+.game-scene .pool-head{position:absolute;left:7%;top:7px;right:7%;z-index:5;display:flex;justify-content:space-between;gap:5px;transform:rotateX(-55deg);font-size:7px;color:#d7fbff}
+.game-scene .pool-head span{color:#43e89e;font-size:6px}.game-scene .pool-stats{position:absolute;left:8%;right:8%;top:28px;z-index:5;display:flex;justify-content:space-between;transform:rotateX(-55deg);font-size:6px;color:#6c9ba7}.game-scene .pool-stats b{color:#c5f8ff}
+.game-scene .shrimp-layer{position:absolute;inset:35px 8% 8%;z-index:3}.game-scene .shrimp-layer span{position:absolute;font-size:21px;filter:drop-shadow(0 0 5px #54e7ff88);will-change:transform}.game-scene .shrimp-layer span:nth-child(1){left:12%;top:38%;animation:shrimpSwimA 4.5s ease-in-out infinite}.game-scene .shrimp-layer span:nth-child(2){left:42%;top:58%;animation:shrimpSwimB 5.2s ease-in-out infinite 1s}.game-scene .shrimp-layer span:nth-child(3){left:67%;top:28%;animation:shrimpSwimC 4.1s ease-in-out infinite .5s}.game-scene .shrimp-layer span:nth-child(4){left:30%;top:18%;animation:shrimpSwimA 5.7s ease-in-out infinite 1.5s}
 @keyframes shrimpSwimA{0%,100%{transform:translate(0,0) rotate(-8deg)}50%{transform:translate(28px,10px) rotate(10deg)}}
 @keyframes shrimpSwimB{0%,100%{transform:translate(0,0) rotate(12deg)}50%{transform:translate(-22px,-12px) rotate(-12deg)}}
 @keyframes shrimpSwimC{0%,100%{transform:translate(0,0) rotate(-15deg)}50%{transform:translate(18px,18px) rotate(8deg)}}
-.inspect-btn{position:absolute;right:8%;bottom:5px;z-index:8;border:1px solid #61ddff55;background:#071b28e8;color:#bcefff;border-radius:6px;padding:5px 7px;font:700 7px monospace;transform:rotateX(-55deg);cursor:pointer}
-.feed-btn:disabled{opacity:.55;cursor:wait}
-.farm-events{position:absolute;left:20px;right:20px;bottom:170px;z-index:15;background:#02131fe8;border:1px solid #61ddff24;border-radius:9px;padding:7px 9px;box-shadow:0 5px 18px #0006;pointer-events:none}
-.events-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;font-size:7px;color:#8df2ff}.events-head span{font-size:6px;color:#43e89e}
-.farm-event{display:grid;grid-template-columns:34px 48px 1fr;gap:5px;align-items:center;padding:3px 0;border-top:1px solid #61ddff12;font:6px monospace;color:#9bbbc4}.farm-event time{color:#4d8291}.farm-event b{color:#65dfff}.farm-event span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.game-scene .auto-feed{position:absolute;right:6%;top:2px;z-index:7;background:#ffb52d;color:#160e05;padding:4px;border-radius:5px;font-size:6px;font-weight:900;transform:rotateX(-55deg);white-space:pre-line}
+.game-scene .feed-btn,.game-scene .inspect-btn{position:absolute;bottom:5px;z-index:9;border-radius:6px;padding:5px 7px;font:700 7px monospace;transform:rotateX(-55deg);cursor:pointer}.game-scene .feed-btn{left:8%;border:1px solid #54e7ff66;background:#062b39e8;color:#9cf5ff}.game-scene .inspect-btn{right:8%;border:1px solid #61ddff55;background:#071b28e8;color:#bcefff}.game-scene .feed-btn:disabled{opacity:.55;cursor:wait}
+.game-scene .farm-events{position:absolute;left:20px;right:20px;top:565px;bottom:auto;z-index:17;background:#02131fe8;border:1px solid #61ddff24;border-radius:9px;padding:7px 9px;box-shadow:0 5px 18px #0006;pointer-events:none}.game-scene .events-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;font-size:7px;color:#8df2ff}.game-scene .events-head span{font-size:6px;color:#43e89e}.game-scene .farm-event{display:grid;grid-template-columns:34px 48px 1fr;gap:5px;align-items:center;padding:3px 0;border-top:1px solid #61ddff12;font:6px monospace;color:#9bbbc4}.game-scene .farm-event time{color:#4d8291}.game-scene .farm-event b{color:#65dfff}.game-scene .farm-event span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.game-scene .cycle-panel{position:absolute;left:20px;right:20px;top:710px;bottom:auto;z-index:18;background:#02131fd9;border:1px solid #61ddff20;border-radius:10px;padding:8px 10px}.game-scene .cycle-panel>div:first-child{display:flex;justify-content:space-between;align-items:center}.game-scene .cycle-panel small{font-size:6px;color:#628e9d}.game-scene .cycle-panel b{font-size:8px;color:#d6fbff}.game-scene .cycle-bar{height:5px;background:#102934;border-radius:5px;margin:6px 0;overflow:hidden}.game-scene .cycle-bar i{display:block;width:31.3%;height:100%;background:linear-gradient(90deg,#19bddd,#78f2ff);border-radius:5px}.game-scene .cycle-metrics{display:flex;justify-content:space-between;font-size:6px;color:#628e9d}.game-scene .cycle-metrics b{color:#a7f4ff;font-size:7px}
 .pool-modal{position:fixed;inset:0;z-index:1000;background:#0009;display:none;align-items:center;justify-content:center;padding:18px}.pool-modal.open{display:flex}.pool-modal-card{width:min(390px,100%);background:linear-gradient(160deg,#071d2a,#020b12);border:1px solid #63ddff55;border-radius:14px;box-shadow:0 20px 70px #000b;padding:16px;color:#d9faff}.pool-modal-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #61ddff22;padding-bottom:10px}.pool-modal-head small{font-size:7px;color:#6594a1}.pool-modal-head h3{margin:2px 0 0;color:#8df2ff;font-size:20px}.modal-close{border:0;background:#ffffff0d;color:#bcefff;border-radius:7px;font-size:22px;width:34px;height:34px;cursor:pointer}.inspect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:12px 0}.inspect-grid div{background:#ffffff06;border:1px solid #61ddff18;border-radius:8px;padding:9px}.inspect-grid small,.inspect-grid b{display:block}.inspect-grid small{font-size:6px;color:#638e9b}.inspect-grid b{font-size:12px;color:#bdf7ff;margin-top:3px}.modal-action{width:100%;border:1px solid #54e7ff66;background:#063344;color:#9cf5ff;border-radius:8px;padding:10px;font:700 10px monospace;cursor:pointer}
-@media(max-width:800px){.farm-events{left:12px;right:12px;bottom:170px}.farm-event{grid-template-columns:31px 42px 1fr;font-size:5.5px}.inspect-btn,.feed-btn{font-size:6px;padding:4px 5px}}
-@media(max-width:420px){.farm-events{bottom:170px}.pool-modal{padding:10px}.pool-modal-card{padding:12px}}
-
-
-/* STAGE 2B MOBILE LAYOUT FIX — explicit vertical game zones */
-.game-scene{height:820px!important;min-height:820px!important;padding-bottom:0!important}
-.game-scene .game-hud{left:20px;right:20px;top:108px}
-.game-scene .solar{top:245px;right:215px}
-.game-scene .plant{top:238px;right:18px}
-.game-scene .game-pools{top:390px;bottom:auto;left:4%;right:4%;gap:12px}
-.game-scene .game-pool{height:170px}
-.game-scene .farm-events{left:20px;right:20px;top:590px;bottom:auto}
-.game-scene .cycle-panel{left:20px;right:20px;top:710px;bottom:auto}
-.game-scene .h3{left:20px;top:675px;bottom:auto;z-index:16}
 @media(max-width:800px){
-  .game-scene{height:820px!important;min-height:820px!important}
-  .game-scene .scene-title{top:14px;left:12px;max-width:55%}
-  .game-scene .h1{right:12px;top:14px}
-  .game-scene .h2{right:12px;top:63px}
-  .game-scene .game-hud{left:12px;right:12px;top:108px}
-  .game-scene .solar{top:245px;right:150px;transform:perspective(400px) rotateX(55deg) scale(.52);transform-origin:top right}
-  .game-scene .plant{top:245px;right:8px;transform:scale(.52);transform-origin:top right}
-  .game-scene .game-pools{top:390px;bottom:auto;left:3%;right:3%;gap:8px}
-  .game-scene .game-pool{height:160px;width:47%}
-  .game-scene .farm-events{left:12px;right:12px;top:568px;bottom:auto}
-  .game-scene .cycle-panel{left:12px;right:12px;top:720px;bottom:auto}
-  .game-scene .h3{left:12px;top:664px;bottom:auto}
+ .game-scene{height:820px!important;min-height:820px!important}
+ .game-scene .scene-title{top:14px;left:12px;max-width:55%;padding:8px 10px}.game-scene .scene-title b{font-size:11px}.game-scene .scene-title small{font-size:7px}
+ .game-scene .h1{right:12px;top:14px}.game-scene .h2{right:12px;top:63px}.game-scene .h3{left:12px;top:650px;bottom:auto}
+ .game-scene .game-hud{left:12px;right:12px;top:108px;grid-template-columns:repeat(2,minmax(0,1fr))}.game-scene .game-hud div:last-child{display:none}
+ .game-scene .solar{top:238px;right:150px;transform:perspective(400px) rotateX(55deg) scale(.50)}.game-scene .plant{top:238px;right:8px;transform:scale(.50)}
+ .game-scene .game-pools{top:375px;left:3%;right:3%;gap:8px}.game-scene .game-pool{width:47%;height:155px}
+ .game-scene .farm-events{left:12px;right:12px;top:545px}.game-scene .cycle-panel{left:12px;right:12px;top:700px}
+ .game-scene .farm-event{grid-template-columns:31px 42px 1fr;font-size:5.5px}.game-scene .feed-btn,.game-scene .inspect-btn{font-size:6px;padding:4px 5px}
 }
 @media(max-width:420px){
-  .game-scene{height:840px!important;min-height:840px!important}
-  .game-scene .game-hud{top:108px;grid-template-columns:repeat(2,minmax(0,1fr))}
-  .game-scene .solar{top:248px;right:132px;transform:perspective(400px) rotateX(55deg) scale(.44)}
-  .game-scene .plant{top:245px;right:2px;transform:scale(.44)}
-  .game-scene .game-pools{top:385px;gap:6px}
-  .game-scene .game-pool{height:155px;width:48%}
-  .game-scene .farm-events{top:555px}
-  .game-scene .h3{top:650px}
-  .game-scene .cycle-panel{top:710px}
+ .game-scene{height:820px!important;min-height:820px!important}.game-scene .game-hud{top:108px}.game-scene .solar{top:238px;right:132px;transform:perspective(400px) rotateX(55deg) scale(.43)}.game-scene .plant{top:238px;right:2px;transform:scale(.43)}
+ .game-scene .game-pools{top:365px;gap:6px}.game-scene .game-pool{height:150px;width:48%}.game-scene .farm-events{top:535px}.game-scene .h3{top:642px}.game-scene .cycle-panel{top:695px}
 }
