@@ -75,3 +75,40 @@
 .pool-modal{position:fixed;inset:0;z-index:1000;background:#0009;display:none;align-items:center;justify-content:center;padding:18px}.pool-modal.open{display:flex}.pool-modal-card{width:min(390px,100%);background:linear-gradient(160deg,#071d2a,#020b12);border:1px solid #63ddff55;border-radius:14px;box-shadow:0 20px 70px #000b;padding:16px;color:#d9faff}.pool-modal-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #61ddff22;padding-bottom:10px}.pool-modal-head small{font-size:7px;color:#6594a1}.pool-modal-head h3{margin:2px 0 0;color:#8df2ff;font-size:20px}.modal-close{border:0;background:#ffffff0d;color:#bcefff;border-radius:7px;font-size:22px;width:34px;height:34px;cursor:pointer}.inspect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:12px 0}.inspect-grid div{background:#ffffff06;border:1px solid #61ddff18;border-radius:8px;padding:9px}.inspect-grid small,.inspect-grid b{display:block}.inspect-grid small{font-size:6px;color:#638e9b}.inspect-grid b{font-size:12px;color:#bdf7ff;margin-top:3px}.modal-action{width:100%;border:1px solid #54e7ff66;background:#063344;color:#9cf5ff;border-radius:8px;padding:10px;font:700 10px monospace;cursor:pointer}
 @media(max-width:800px){.farm-events{left:12px;right:12px;bottom:170px}.farm-event{grid-template-columns:31px 42px 1fr;font-size:5.5px}.inspect-btn,.feed-btn{font-size:6px;padding:4px 5px}}
 @media(max-width:420px){.farm-events{bottom:170px}.pool-modal{padding:10px}.pool-modal-card{padding:12px}}
+
+
+/* STAGE 2B MOBILE LAYOUT FIX — explicit vertical game zones */
+.game-scene{height:820px!important;min-height:820px!important;padding-bottom:0!important}
+.game-scene .game-hud{left:20px;right:20px;top:108px}
+.game-scene .solar{top:245px;right:215px}
+.game-scene .plant{top:238px;right:18px}
+.game-scene .game-pools{top:390px;bottom:auto;left:4%;right:4%;gap:12px}
+.game-scene .game-pool{height:170px}
+.game-scene .farm-events{left:20px;right:20px;top:590px;bottom:auto}
+.game-scene .cycle-panel{left:20px;right:20px;top:710px;bottom:auto}
+.game-scene .h3{left:20px;top:675px;bottom:auto;z-index:16}
+@media(max-width:800px){
+  .game-scene{height:820px!important;min-height:820px!important}
+  .game-scene .scene-title{top:14px;left:12px;max-width:55%}
+  .game-scene .h1{right:12px;top:14px}
+  .game-scene .h2{right:12px;top:63px}
+  .game-scene .game-hud{left:12px;right:12px;top:108px}
+  .game-scene .solar{top:245px;right:150px;transform:perspective(400px) rotateX(55deg) scale(.52);transform-origin:top right}
+  .game-scene .plant{top:245px;right:8px;transform:scale(.52);transform-origin:top right}
+  .game-scene .game-pools{top:390px;bottom:auto;left:3%;right:3%;gap:8px}
+  .game-scene .game-pool{height:160px;width:47%}
+  .game-scene .farm-events{left:12px;right:12px;top:568px;bottom:auto}
+  .game-scene .cycle-panel{left:12px;right:12px;top:720px;bottom:auto}
+  .game-scene .h3{left:12px;top:664px;bottom:auto}
+}
+@media(max-width:420px){
+  .game-scene{height:840px!important;min-height:840px!important}
+  .game-scene .game-hud{top:108px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .game-scene .solar{top:248px;right:132px;transform:perspective(400px) rotateX(55deg) scale(.44)}
+  .game-scene .plant{top:245px;right:2px;transform:scale(.44)}
+  .game-scene .game-pools{top:385px;gap:6px}
+  .game-scene .game-pool{height:155px;width:48%}
+  .game-scene .farm-events{top:555px}
+  .game-scene .h3{top:650px}
+  .game-scene .cycle-panel{top:710px}
+}
