@@ -29,12 +29,12 @@ async function boot(){setup();try{S.user=await api("/api/auth",{method:"POST"});
 ;(()=>{
 const $=id=>document.getElementById(id);
 const G={
- en:{population:'POPULATION',biomass:'BIOMASS',health:'HEALTH',feed:'FEED',inspect:'INSPECT',events:'LIVE FARM EVENTS',growth:'GROWTH CYCLE',day:'DAY',avg:'AVG WT',survival:'SURVIVAL',close:'CLOSE',pool:'POOL',temperature:'TEMPERATURE',ph:'pH',do:'DO',fed:'FEEDING COMPLETED',waterStable:'WATER QUALITY — STABLE',growthEvent:'BIOMASS +',cycleEvent:'GROWTH CYCLE ADVANCED',cooldown:'FEED COOLDOWN',ready:'READY'},
- uk:{population:'ПОПУЛЯЦІЯ',biomass:'БІОМАСА',health:'ЗДОРОВʼЯ',feed:'ГОДУВАТИ',inspect:'ОГЛЯД',events:'ПОДІЇ ФЕРМИ ВЖИВУ',growth:'ЦИКЛ РОСТУ',day:'ДЕНЬ',avg:'СЕР. ВАГА',survival:'ВИЖИВАНІСТЬ',close:'ЗАКРИТИ',pool:'БАСЕЙН',temperature:'ТЕМПЕРАТУРА',ph:'pH',do:'DO',fed:'ГОДІВЛЯ ЗАВЕРШЕНА',waterStable:'ЯКІСТЬ ВОДИ — СТАБІЛЬНА',growthEvent:'БІОМАСА +',cycleEvent:'ЦИКЛ РОСТУ ПРОСУНУТО',cooldown:'ПЕРЕРВА ГОДІВЛІ',ready:'ГОТОВО'},
- de:{population:'POPULATION',biomass:'BIOMASSE',health:'GESUNDHEIT',feed:'FÜTTERN',inspect:'INSPEKT',events:'LIVE-FARM-EREIGNISSE',growth:'WACHSTUMSZYKLUS',day:'TAG',avg:'AVG. GEWICHT',survival:'ÜBERLEBEN',close:'SCHLIESSEN',pool:'BECKEN',temperature:'TEMPERATUR',ph:'pH',do:'DO',fed:'FÜTTERUNG ABGESCHLOSSEN',waterStable:'WASSERQUALITÄT — STABIL',growthEvent:'BIOMASSE +',cycleEvent:'WACHSTUMSZYKLUS FORTGESCHRITTEN',cooldown:'FÜTTERPAUSE',ready:'BEREIT'},
- fr:{population:'POPULATION',biomass:'BIOMASSE',health:'SANTÉ',feed:'NOURRIR',inspect:'INSPECTER',events:'ÉVÉNEMENTS DE LA FERME',growth:'CYCLE DE CROISSANCE',day:'JOUR',avg:'POIDS MOY.',survival:'SURVIE',close:'FERMER',pool:'BASSIN',temperature:'TEMPÉRATURE',ph:'pH',do:'DO',fed:'ALIMENTATION TERMINÉE',waterStable:'QUALITÉ DE L’EAU — STABLE',growthEvent:'BIOMASSE +',cycleEvent:'CYCLE DE CROISSANCE AVANCÉ',cooldown:'PAUSE ALIMENTATION',ready:'PRÊT'},
- ja:{population:'個体数',biomass:'バイオマス',health:'健康度',feed:'給餌',inspect:'検査',events:'ライブ農場イベント',growth:'成長サイクル',day:'日',avg:'平均体重',survival:'生存率',close:'閉じる',pool:'養殖池',temperature:'水温',ph:'pH',do:'DO',fed:'給餌完了',waterStable:'水質 — 安定',growthEvent:'バイオマス +',cycleEvent:'成長サイクル進行',cooldown:'給餌クールダウン',ready:'準備完了'},
- zh:{population:'数量',biomass:'生物量',health:'健康度',feed:'喂料',inspect:'检查',events:'农场实时事件',growth:'生长周期',day:'天',avg:'平均重量',survival:'存活率',close:'关闭',pool:'养殖池',temperature:'水温',ph:'pH',do:'DO',fed:'喂料完成',waterStable:'水质 — 稳定',growthEvent:'生物量 +',cycleEvent:'生长周期推进',cooldown:'喂料冷却',ready:'就绪'}
+ en:{population:'POPULATION',biomass:'BIOMASS',health:'HEALTH',feed:'FEED',inspect:'INSPECT',events:'LIVE FARM EVENTS',growth:'GROWTH CYCLE',day:'DAY',avg:'AVG WT',survival:'SURVIVAL',close:'CLOSE',pool:'POOL',temperature:'TEMPERATURE',ph:'pH',do:'DO',fed:'FEEDING COMPLETED',waterStable:'WATER QUALITY — STABLE',growthEvent:'BIOMASS +',cycleEvent:'GROWTH CYCLE ADVANCED',cooldown:'FEED COOLDOWN',ready:'READY',upgrades:'UPGRADE SYSTEM',tree:'FARM DEVELOPMENT TREE',upgrade:'UPGRADE',level:'LEVEL',cost:'COST',maxed:'MAXED',locked:'LOCKED',gameOnly:'Game progression only • no real-money effect',solar:'SOLAR',battery:'BATTERY',poolModule:'POOLS',biofilterModule:'BIOFILTER',automationModule:'AUTOMATION',dryingModule:'DRYING',packingModule:'PACKING',droneModule:'DRONE',solarDesc:'Energy generation',batteryDesc:'Energy storage',poolDesc:'Capacity & biomass',biofilterDesc:'Water stability',automationDesc:'Smart control',dryingDesc:'Processing capacity',packingDesc:'Packing throughput',droneDesc:'Delivery capacity',notEnough:'NOT ENOUGH XP',upgradeDone:'UPGRADE COMPLETE' },
+ uk:{population:'ПОПУЛЯЦІЯ',biomass:'БІОМАСА',health:'ЗДОРОВʼЯ',feed:'ГОДУВАТИ',inspect:'ОГЛЯД',events:'ПОДІЇ ФЕРМИ ВЖИВУ',growth:'ЦИКЛ РОСТУ',day:'ДЕНЬ',avg:'СЕР. ВАГА',survival:'ВИЖИВАНІСТЬ',close:'ЗАКРИТИ',pool:'БАСЕЙН',temperature:'ТЕМПЕРАТУРА',ph:'pH',do:'DO',fed:'ГОДІВЛЯ ЗАВЕРШЕНА',waterStable:'ЯКІСТЬ ВОДИ — СТАБІЛЬНА',growthEvent:'БІОМАСА +',cycleEvent:'ЦИКЛ РОСТУ ПРОСУНУТО',cooldown:'ПЕРЕРВА ГОДІВЛІ',ready:'ГОТОВО',upgrades:'АПГРЕЙДИ СИСТЕМИ',tree:'ДЕРЕВО РОЗВИТКУ ФЕРМИ',upgrade:'ПОКРАЩИТИ',level:'РІВЕНЬ',cost:'ВАРТІСТЬ',maxed:'МАКС.',locked:'ЗАБЛОКОВАНО',gameOnly:'Лише ігровий прогрес • без впливу на реальні гроші',solar:'СОНЯЧНА ЕНЕРГІЯ',battery:'АКУМУЛЯТОР',poolModule:'БАСЕЙНИ',biofilterModule:'БІОФІЛЬТР',automationModule:'АВТОМАТИКА',dryingModule:'СУШІННЯ',packingModule:'ПАКУВАННЯ',droneModule:'ДРОН',solarDesc:'Генерація енергії',batteryDesc:'Накопичення енергії',poolDesc:'Місткість і біомаса',biofilterDesc:'Стабільність води',automationDesc:'Розумне керування',dryingDesc:'Потужність переробки',packingDesc:'Пропускна здатність пакування',droneDesc:'Місткість доставки',notEnough:'НЕДОСТАТНЬО XP',upgradeDone:'ПОКРАЩЕННЯ ЗАВЕРШЕНО' },
+ de:{population:'POPULATION',biomass:'BIOMASSE',health:'GESUNDHEIT',feed:'FÜTTERN',inspect:'INSPEKT',events:'LIVE-FARM-EREIGNISSE',growth:'WACHSTUMSZYKLUS',day:'TAG',avg:'AVG. GEWICHT',survival:'ÜBERLEBEN',close:'SCHLIESSEN',pool:'BECKEN',temperature:'TEMPERATUR',ph:'pH',do:'DO',fed:'FÜTTERUNG ABGESCHLOSSEN',waterStable:'WASSERQUALITÄT — STABIL',growthEvent:'BIOMASSE +',cycleEvent:'WACHSTUMSZYKLUS FORTGESCHRITTEN',cooldown:'FÜTTERPAUSE',ready:'BEREIT',upgrades:'SYSTEM-UPGRADES',tree:'FARM-ENTWICKLUNGSBAUM',upgrade:'UPGRADE',level:'LEVEL',cost:'KOSTEN',maxed:'MAX',locked:'GESPERRT',gameOnly:'Nur Spielfortschritt • kein Echtgeld-Effekt',solar:'SOLAR',battery:'BATTERIE',poolModule:'BECKEN',biofilterModule:'BIOFILTER',automationModule:'AUTOMATION',dryingModule:'TROCKNUNG',packingModule:'VERPACKUNG',droneModule:'DROHNE',solarDesc:'Energieerzeugung',batteryDesc:'Energiespeicher',poolDesc:'Kapazität & Biomasse',biofilterDesc:'Wasserstabilität',automationDesc:'Smarte Steuerung',dryingDesc:'Verarbeitungskapazität',packingDesc:'Verpackungsdurchsatz',droneDesc:'Lieferkapazität',notEnough:'NICHT GENUG XP',upgradeDone:'UPGRADE ABGESCHLOSSEN' },
+ fr:{population:'POPULATION',biomass:'BIOMASSE',health:'SANTÉ',feed:'NOURRIR',inspect:'INSPECTER',events:'ÉVÉNEMENTS DE LA FERME',growth:'CYCLE DE CROISSANCE',day:'JOUR',avg:'POIDS MOY.',survival:'SURVIE',close:'FERMER',pool:'BASSIN',temperature:'TEMPÉRATURE',ph:'pH',do:'DO',fed:'ALIMENTATION TERMINÉE',waterStable:'QUALITÉ DE L’EAU — STABLE',growthEvent:'BIOMASSE +',cycleEvent:'CYCLE DE CROISSANCE AVANCÉ',cooldown:'PAUSE ALIMENTATION',ready:'PRÊT',upgrades:'AMÉLIORATIONS DU SYSTÈME',tree:'ARBRE DE DÉVELOPPEMENT',upgrade:'AMÉLIORER',level:'NIVEAU',cost:'COÛT',maxed:'MAX',locked:'VERROUILLÉ',gameOnly:'Progression de jeu uniquement • aucun effet argent réel',solar:'SOLAIRE',battery:'BATTERIE',poolModule:'BASSINS',biofilterModule:'BIOFILTRE',automationModule:'AUTOMATISATION',dryingModule:'SÉCHAGE',packingModule:'EMBALLAGE',droneModule:'DRONE',solarDesc:'Production d’énergie',batteryDesc:'Stockage d’énergie',poolDesc:'Capacité & biomasse',biofilterDesc:'Stabilité de l’eau',automationDesc:'Contrôle intelligent',dryingDesc:'Capacité de traitement',packingDesc:'Débit d’emballage',droneDesc:'Capacité de livraison',notEnough:'XP INSUFFISANT',upgradeDone:'AMÉLIORATION TERMINÉE' },
+ ja:{population:'個体数',biomass:'バイオマス',health:'健康度',feed:'給餌',inspect:'検査',events:'ライブ農場イベント',growth:'成長サイクル',day:'日',avg:'平均体重',survival:'生存率',close:'閉じる',pool:'養殖池',temperature:'水温',ph:'pH',do:'DO',fed:'給餌完了',waterStable:'水質 — 安定',growthEvent:'バイオマス +',cycleEvent:'成長サイクル進行',cooldown:'給餌クールダウン',ready:'準備完了',upgrades:'システムアップグレード',tree:'ファーム開発ツリー',upgrade:'アップグレード',level:'レベル',cost:'コスト',maxed:'最大',locked:'ロック',gameOnly:'ゲーム進行のみ • 実際の支払いには影響しません',solar:'ソーラー',battery:'バッテリー',poolModule:'養殖池',biofilterModule:'バイオフィルター',automationModule:'自動化',dryingModule:'乾燥',packingModule:'包装',droneModule:'ドローン',solarDesc:'発電能力',batteryDesc:'蓄電能力',poolDesc:'容量とバイオマス',biofilterDesc:'水質安定',automationDesc:'スマート制御',dryingDesc:'加工能力',packingDesc:'包装処理能力',droneDesc:'配送能力',notEnough:'XP不足',upgradeDone:'アップグレード完了' },
+ zh:{population:'数量',biomass:'生物量',health:'健康度',feed:'喂料',inspect:'检查',events:'农场实时事件',growth:'生长周期',day:'天',avg:'平均重量',survival:'存活率',close:'关闭',pool:'养殖池',temperature:'水温',ph:'pH',do:'DO',fed:'喂料完成',waterStable:'水质 — 稳定',growthEvent:'生物量 +',cycleEvent:'生长周期推进',cooldown:'喂料冷却',ready:'就绪',upgrades:'系统升级',tree:'农场发展树',upgrade:'升级',level:'等级',cost:'成本',maxed:'最高',locked:'锁定',gameOnly:'仅游戏进度 • 不影响真实资金',solar:'太阳能',battery:'电池',poolModule:'养殖池',biofilterModule:'生物过滤',automationModule:'自动化',dryingModule:'干燥',packingModule:'包装',droneModule:'无人机',solarDesc:'能源发电',batteryDesc:'能源储存',poolDesc:'容量与生物量',biofilterDesc:'水质稳定',automationDesc:'智能控制',dryingDesc:'加工能力',packingDesc:'包装吞吐',droneDesc:'配送能力',notEnough:'XP不足',upgradeDone:'升级完成' }
 };
 const gt=k=>(G[S.lang]||G.en)[k]||G.en[k]||k;
 const pools={
@@ -45,6 +45,7 @@ let xp=0,day=47,lastFeed={1:0,2:0};
 function sync(){
  const total=pools[1].bio+pools[2].bio;
  if($('xp'))$('xp').textContent=xp+' / 1000';
+ renderUpgrades();
  if($('farmLevel'))$('farmLevel').textContent=String(1+Math.floor(xp/1000));
  if($('biomassValue'))$('biomassValue').textContent=total.toFixed(1)+' kg';
  for(const n of [1,2]){
@@ -88,7 +89,53 @@ function inspect(n){
  modal.innerHTML=`<div class="pool-modal-card"><div class="pool-modal-head"><div><small>${gt('pool')}</small><h3>#0${n}</h3></div><button class="modal-close">×</button></div><div class="inspect-grid"><div><small>${gt('population')}</small><b>${p.pop.toLocaleString()}</b></div><div><small>${gt('biomass')}</small><b>${p.bio.toFixed(1)} kg</b></div><div><small>${gt('health')}</small><b>${p.health.toFixed(1)}%</b></div><div><small>FEED</small><b>${p.feed}%</b></div><div><small>${gt('temperature')}</small><b>${p.temp.toFixed(1)}°C</b></div><div><small>${gt('ph')}</small><b>${p.ph.toFixed(1)}</b></div><div><small>${gt('do')}</small><b>${p.do.toFixed(1)} mg/L</b></div><div><small>${gt('avg')}</small><b>${p.avg} g</b></div></div><button class="modal-action modal-feed" data-feed="${n}">${gt('feed')}</button></div>`;
  modal.classList.add('open');modal.querySelector('.modal-close').onclick=()=>modal.classList.remove('open');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};modal.querySelector('.modal-feed').onclick=()=>{feed(n);inspect(n)};
 }
+
+const upgrades={
+ solar:{icon:'☀',name:'solar',desc:'solarDesc',base:100,max:5},
+ battery:{icon:'🔋',name:'battery',desc:'batteryDesc',base:150,max:5},
+ pools:{icon:'🦐',name:'poolModule',desc:'poolDesc',base:200,max:5},
+ biofilter:{icon:'♻',name:'biofilterModule',desc:'biofilterDesc',base:250,max:5},
+ automation:{icon:'🧠',name:'automationModule',desc:'automationDesc',base:300,max:5},
+ drying:{icon:'♨',name:'dryingModule',desc:'dryingDesc',base:350,max:5},
+ packing:{icon:'📦',name:'packingModule',desc:'packingDesc',base:400,max:5},
+ drone:{icon:'🚁',name:'droneModule',desc:'droneDesc',base:500,max:5}
+};
+const upgradeLv={solar:0,battery:0,pools:0,biofilter:0,automation:0,drying:0,packing:0,drone:0};
+function upgradeCost(k){return upgrades[k].base*(upgradeLv[k]+1)}
+function renderUpgrades(){
+ const grid=$('upgradeGrid'); if(!grid)return;
+ const uh=$('upgradeHeader'); if(uh)uh.textContent=gt('upgrades');
+ const ut=$('upgradeTree'); if(ut)ut.textContent=gt('tree');
+ const un=$('upgradeNote'); if(un)un.textContent=gt('gameOnly');
+ const ux=$('upgradeXp'); if(ux)ux.textContent=xp+' XP';
+ grid.innerHTML=Object.entries(upgrades).map(([k,u])=>{
+  const lv=upgradeLv[k],max=lv>=u.max,cost=upgradeCost(k),can=xp>=cost&&!max;
+  return `<article class="upgrade-card ${max?'maxed':''}">
+   <div class="upgrade-icon">${u.icon}</div><div class="upgrade-main"><b>${gt(u.name)}</b><small>${gt(u.desc)}</small>
+   <div class="upgrade-meta"><span>${gt('level')} <strong>${lv}/${u.max}</strong></span><span>${max?gt('maxed'):gt('cost')+' '+cost+' XP'}</span></div>
+   <div class="upgrade-bar"><i style="width:${lv/u.max*100}%"></i></div>
+   <button class="upgrade-btn" data-upgrade="${k}" ${can?'':'disabled'}>${max?gt('maxed'):gt('upgrade')}</button>
+   </div></article>`;
+ }).join('');
+}
+function applyUpgradeEffect(k){
+ const p1=pools[1],p2=pools[2];
+ if(k==='solar') document.getElementById('energyValue').textContent=(42.7+upgradeLv[k]*3).toFixed(1)+' kWh';
+ if(k==='battery') document.querySelector('.game-hud div:nth-child(4) b')?.replaceChildren(document.createTextNode('112 m³'));
+ if(k==='pools'){p1.pop+=60;p2.pop+=60;p1.bio+=.2;p2.bio+=.2}
+ if(k==='biofilter'){p1.health=Math.min(100,p1.health+1);p2.health=Math.min(100,p2.health+1)}
+ if(k==='automation'){p1.feed=Math.min(100,p1.feed+2);p2.feed=Math.min(100,p2.feed+2)}
+ sync();
+}
+function doUpgrade(k){
+ const u=upgrades[k]; if(!u)return; const cost=upgradeCost(k);
+ if(upgradeLv[k]>=u.max)return;
+ if(xp<cost){toast(gt('notEnough'));return}
+ xp-=cost; upgradeLv[k]++; applyUpgradeEffect(k); renderUpgrades(); addEvent(`${gt(u.name)} • ${gt('upgradeDone')} • LV ${upgradeLv[k]}`,'UPGRADE'); toast(`${gt(u.name)} • LV ${upgradeLv[k]}`);
+}
+function initUpgrades(){renderUpgrades()}
+document.addEventListener('click',e=>{const u=e.target.closest('.upgrade-btn');if(u){doUpgrade(u.dataset.upgrade)}});
 document.addEventListener('click',e=>{const f=e.target.closest('.feed-btn');if(f){e.stopPropagation();feed(+f.dataset.feed);return}const i=e.target.closest('.inspect-btn');if(i){inspect(+i.dataset.inspect);return}const pool=e.target.closest('.game-pool');if(pool&&!e.target.closest('button'))inspect(+pool.dataset.pool)});
-function gameStart(){ensureEvents();sync();setInterval(()=>{for(const n of [1,2]){const p=pools[n];p.bio+=0.03;p.feed=Math.max(0,p.feed-0.5);p.health=Math.max(80,Math.min(100,p.health+(p.feed>40?.03:-.08)));p.avg+=.02}if(day<150){day++;}sync();if(day%5===0)addEvent(`${gt('growthEvent')} 0.06 kg`,'GROWTH');},15000)}
+function gameStart(){ensureEvents();initUpgrades();sync();setInterval(()=>{for(const n of [1,2]){const p=pools[n];p.bio+=0.03;p.feed=Math.max(0,p.feed-0.5);p.health=Math.max(80,Math.min(100,p.health+(p.feed>40?.03:-.08)));p.avg+=.02}if(day<150){day++;}sync();if(day%5===0)addEvent(`${gt('growthEvent')} 0.06 kg`,'GROWTH');},15000)}
 document.addEventListener('DOMContentLoaded',gameStart);
 })();
